@@ -1,0 +1,141 @@
+<html lang="tr" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>REGISTER FACESS</title>
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                background: #3b648d;
+            }
+
+            .box{
+                width: 300px;
+                padding: 20px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background: #080808;
+                text-align: center;
+                border-radius: 20px 20px;
+            }
+
+            .box h1{
+                color: white;
+                text-transform: uppercase;
+                font-weight: 500;
+                background: linear-gradient(
+                    to right,
+                    hsl(0, 0%, 7%),
+                    hsl(0, 2%, 13%)
+                );
+               /* -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: center;*/
+            }
+
+            .box input[type = "text"],.box input[type = "password"]{
+                border:0;
+                background: none;
+                display: block;
+                margin: 5px auto;
+                text-align: center;
+                border: 2px solid #7599b0;
+                padding: 14px 10px;
+                width: 200px;
+                outline: none;
+                color: white;
+                border-radius: 24px;
+                transition: 0.5s;
+            }
+            
+            .box input[type = "text"]:focus,.box input[type = "password"]:focus{
+                border-color: #237ca0;
+                width: 250px;
+            }
+            
+            .box input[type = "text"]:hover,.box input[type = "password"]:hover{
+                border-color: #5491bc;
+            }
+            
+            .box input[type = "submit"]{
+                border:0;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #ceb1db;
+                padding: 14px 40px;
+                outline: none;
+                color: white;
+                transition: 0.25s;
+                cursor: pointer;
+            }
+            
+            .box input[type = "submit"]:focus{
+                border-color: #90c9c4;
+            }
+            
+            .box input[type = "submit"]:hover{
+                background: #342c3e;
+                border-radius: 24px;
+            }
+
+            a {
+                font-family: "Dank Mono", ui-monospace, monospace;
+                background: linear-gradient(
+                    to right,
+                    hsl(222, 30%, 71%),
+                    hsl(204, 39%, 65%)
+                );
+                /*-webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;*/
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="box" action="" method="post">
+            <h1>REGISTER FACESS</h1>
+
+            <input type="text" name="name" placeholder="Input your name">
+            <input type="text" name="email" placeholder="Input your email">
+            
+            <div class="focus-camera">
+                <video id="output-camera"></video>
+            </div>
+
+            <input type="submit" value="REGISTER">
+            <br>
+            <label style="color: #fff;">
+                If your face has been registered, click <a style="color: rgb(5, 53, 53);" link href="index.html"  rel="import">LOGIN</a>
+            </label>
+            <br><br>
+        </form>
+
+        <script>
+            var video = document.getElementById('output-camera');
+            video.setAttribute('playsinline', '');
+            video.setAttribute('autoplay', '');
+            video.setAttribute('muted', '');
+            video.style.width = '200px';
+            video.style.height = '200px';
+
+            /* Setting up the constraint */
+            var facingMode = "user"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
+            var constraints = {
+                audio: false,
+                video: {
+                    facingMode: facingMode
+                }
+            };
+
+            /* Stream it to video element */
+            navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+                video.srcObject = stream;
+            });
+        </script>
+    </body>
+</html>
